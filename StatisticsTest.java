@@ -229,31 +229,27 @@ public class StatisticsTest
     }
 
     /**
-     * This tests that a string is correctly constructed from the parameters
-     * passed to the Statistics constructor
+     * This tests the method which creates a String based on a gregorianCalendar
+     * representing the date of the statistics
      */
     @Test
-    public void toStringTest()
+    public void createStringFromDateZDTTest()
     {
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
         int validStations = 10;
-        GregorianCalendar dateTime = new GregorianCalendar(2018, 10, 2, 17, 35);
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
         StatsType sType = StatsType.AVERAGE;
 
         // Object to Test
-        Statistics statTest = new Statistics(value, stid, dateTime,
+        Statistics statTest = new Statistics(value, stid, zonedDateTime,
                 validStations, sType);
 
-        String expected = "Station ID: MESO, Value: 12.0,"
-                + " Number of Reporting Stations: 10, StatType: AVERAGE";
-
-        // ", Number of Reporting Stations: %d, StatType: %s"
-        // , this.getNumberOfReportingStations(), this.statType);
-
-        String actual = statTest.toString();
-
-        assertEquals(expected, actual);
+        // Test that the correct String was made
+        String expectedTime = "2018-10-02T17:35:00 Central Standard Time";
+        String actualTime = statTest.createStringFromDate(zonedDateTime);
+        assertEquals(expectedTime, actualTime);
     }
+
 }
