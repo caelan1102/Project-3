@@ -3,6 +3,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.text.ParseException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.GregorianCalendar;
 
 /**
@@ -14,42 +16,33 @@ import java.util.GregorianCalendar;
 public class StatisticsTest
 {
     /**
-     * This tests that constructor that uses a dateTimeString rather than a
-     * gregorianCalendar
+     * This tests that constructor that uses a zonedDateTime rather than a
+     * GregorianCalendar
      */
     @Test
-    public void constructorTimeStringTest()
+    public void constructorZonedDateTimeTest()
     {
-        try
-        {
-            // Expected Values
-            double value = 12.0;
-            String stid = "MESO";
-            String dateTimeString = "2018-11-02T17:35:00 Coordinated Universal "
-                    + "Time";
-            StatsType sType = StatsType.AVERAGE;
+        // Set example parameters
+        double value = 12.0;
+        String stid = "MESO";
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        StatsType sType = StatsType.AVERAGE;
 
-            // This is the parameter to be tested
-            int expectedValidStations = 10;
+        // This is the parameter to be tested
+        int expectedValidStations = 10;
 
-            // Object to Test
-            Statistics statTest = new Statistics(value, stid, dateTimeString,
-                    expectedValidStations, sType);
+        // Object to Test
+        Statistics statTest = new Statistics(value, stid, zonedDateTime,
+                expectedValidStations, sType);
 
-            // Test that the constructor worked
-            int actualValidStations = statTest.getNumberOfReportingStations();
-            Assert.assertEquals(expectedValidStations, actualValidStations);
-        }
-
-        catch (ParseException e)
-        {
-            fail("A date could not be parsed from a legal date String");
-        }
+        // Test that the constructor worked
+        int actualValidStations = statTest.getNumberOfReportingStations();
+        Assert.assertEquals(expectedValidStations, actualValidStations);
     }
 
     /**
-     * This tests that constructor that uses a gregorianCalendar rather than a
-     * dateTimeString
+     * This tests that constructor that uses a GregorianCalendar rather than a
+     * ZonedDateTime
      */
     @Test
     public void constructorGregorianCalendarTest()
@@ -71,7 +64,6 @@ public class StatisticsTest
         int actualValidStations = statTest.getNumberOfReportingStations();
         Assert.assertEquals(expectedValidStations, actualValidStations);
     }
-
     /**
      * This tests the method which creates a gregorianCalendar based on a 
      * string representing the date of the statistics
