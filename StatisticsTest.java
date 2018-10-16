@@ -22,6 +22,7 @@ public class StatisticsTest
     @Test
     public void constructorZonedDateTimeTest()
     {
+        fail("Not implemented yet");
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
@@ -235,6 +236,7 @@ public class StatisticsTest
     @Test
     public void createStringFromDateZDTTest()
     {
+        fail("Not implemented yet");
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
@@ -259,6 +261,7 @@ public class StatisticsTest
     @Test
     public void newerThanZDTTest()
     {
+        fail("Not implemented yet");
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
@@ -284,8 +287,9 @@ public class StatisticsTest
      * older than a given zonedDateTime
      */
     @Test
-    public void olderThanGCTest()
+    public void olderThanZDTTest()
     {
+        fail("Not implemented yet");
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
@@ -310,8 +314,9 @@ public class StatisticsTest
      * the same as a given zonedDateTime
      */
     @Test
-    public void sameAsGCTest()
+    public void sameAsZDTTest()
     {
+        fail("Not implemented yet");
         // Set example parameters
         double value = 12.0;
         String stid = "MESO";
