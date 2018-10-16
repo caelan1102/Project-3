@@ -105,7 +105,7 @@ public class StatisticsTest
      * representing the date of the statistics
      */
     @Test
-    public void createStringFromDateTest()
+    public void createStringFromDateGCTest()
     {
         // Set example parameters
         double value = 12.0;
@@ -153,7 +153,7 @@ public class StatisticsTest
      * than a given date
      */
     @Test
-    public void newerThanTest()
+    public void newerThanGCTest()
     {
         // Set example parameters
         double value = 12.0;
@@ -179,7 +179,7 @@ public class StatisticsTest
      * than a given date
      */
     @Test
-    public void olderThanTest()
+    public void olderThanGCTest()
     {
         // Set example parameters
         double value = 12.0;
@@ -205,7 +205,7 @@ public class StatisticsTest
      * same as a given date
      */
     @Test
-    public void sameAsTest()
+    public void sameAsGCTest()
     {
         // Set example parameters
         double value = 12.0;
