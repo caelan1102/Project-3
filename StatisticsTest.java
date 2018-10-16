@@ -229,7 +229,7 @@ public class StatisticsTest
     }
 
     /**
-     * This tests the method which creates a String based on a gregorianCalendar
+     * This tests the method which creates a String based on a zonedDateTime
      * representing the date of the statistics
      */
     @Test
@@ -251,5 +251,85 @@ public class StatisticsTest
         String actualTime = statTest.createStringFromDate(zonedDateTime);
         assertEquals(expectedTime, actualTime);
     }
+    
+    /**
+     * This tests the method that determines whether the recorded statistics are
+     * newer than a given zonedDateTime
+     */
+    @Test
+    public void newerThanZDTTest()
+    {
+        // Set example parameters
+        double value = 12.0;
+        String stid = "MESO";
+        int validStations = 10;
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        StatsType sType = StatsType.AVERAGE;
 
+        // Object to Test
+        Statistics statTest = new Statistics(value, stid, zonedDateTime,
+                validStations, sType);
+
+        // Create times prior and after the date used
+        ZonedDateTime newer = ZonedDateTime.of(2019, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        ZonedDateTime older = ZonedDateTime.of(2017, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+
+
+        assertTrue(statTest.newerThan(older));
+        assertTrue(!statTest.newerThan(newer));
+    }
+
+    /**
+     * This tests the method that determines whether the recorded statistics are
+     * older than a given zonedDateTime
+     */
+    @Test
+    public void olderThanGCTest()
+    {
+        // Set example parameters
+        double value = 12.0;
+        String stid = "MESO";
+        int validStations = 10;
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        StatsType sType = StatsType.AVERAGE;
+
+        // Object to Test
+        Statistics statTest = new Statistics(value, stid, zonedDateTime,
+                validStations, sType);
+
+        // Create times prior and after the date used
+        ZonedDateTime newer = ZonedDateTime.of(2019, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        ZonedDateTime older = ZonedDateTime.of(2017, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+
+        assertTrue(statTest.olderThan(newer));
+        assertTrue(!statTest.olderThan(older));
+    }
+
+    /**
+     * This tests the method that determines whether the recorded statistics are
+     * the same as a given zonedDateTime
+     */
+    @Test
+    public void sameAsGCTest()
+    {
+        // Set example parameters
+        double value = 12.0;
+        String stid = "MESO";
+        int validStations = 10;
+        ZonedDateTime zonedDateTime = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        StatsType sType = StatsType.AVERAGE;
+
+        // Object to Test
+        Statistics statTest = new Statistics(value, stid, zonedDateTime,
+                validStations, sType);
+
+        // Create times the same as, prior, and after the date used
+        ZonedDateTime same = ZonedDateTime.of(2018, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        ZonedDateTime newer = ZonedDateTime.of(2019, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+        ZonedDateTime older = ZonedDateTime.of(2017, 10, 2, 17, 35, 0, 0, ZoneId.of("CST"));
+
+        assertTrue(statTest.sameAs(same));
+        assertTrue(!statTest.sameAs(newer));
+        assertTrue(!statTest.sameAs(older));
+    }
 }
